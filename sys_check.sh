@@ -14,3 +14,10 @@ echo -e "\n--- MEMORY USAGE ---"
 free -m
 
 echo -e "\n=========================================="
+echo "Checking Database Status..."
+# Simulate checking if a database service (like PostgreSQL) is active
+if systemctl is-active --quiet postgresql; then
+    echo "▶ Database: ONLINE"
+else
+    echo "▶ Database: OFFLINE (or not installed)"
+fi
