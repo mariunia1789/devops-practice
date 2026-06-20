@@ -1,0 +1,19 @@
+name: Test Shell Script Syntax
+
+# This tells GitHub to run this script every single time someone pushes code
+on: [push]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest # Spin up a fresh Ubuntu server in the cloud
+
+    steps:
+    - name: Check out the code
+      uses: actions/checkout@v4 # Download your repository code onto that server
+
+    - name: Check Shell Syntax
+      run: |
+        # This checks the script for syntax errors without actually running it
+        bash -n sys_check.sh
+        echo "Syntax check passed perfectly!"
+        
