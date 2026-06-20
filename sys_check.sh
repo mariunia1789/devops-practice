@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo "Starting the DevOps System Check Tool..."
 # Create a timestamp
 TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
 
