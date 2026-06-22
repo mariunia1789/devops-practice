@@ -1,19 +1,29 @@
-name: Test Shell Script Syntax
+name: CI/CD Docker Pipeline
 
 # This tells GitHub to run this script every single time someone pushes code
 on: [push]
 
 jobs:
-  lint-and-test:
+  lint-build-and-deploy:
     runs-on: ubuntu-latest # Spin up a fresh Ubuntu server in the cloud
 
     steps:
-    - name: Check out the code
+    - name: 1. Check out the code
       uses: actions/checkout@v4 # Download your repository code onto that server
 
-    - name: Check Shell Syntax
+    - name: 2. Check Shell Syntax
       run: |
         # This checks the script for syntax errors without actually running it
         bash -n sys_check.sh
         echo "Syntax check passed perfectly!"
-        
+
+    - name: 3. Build Docker Image in Cloud
+      run: |
+        # Tell the GitHub runner to bake our Docker image using our Dockerfile
+        docker build -t my-sys-checker .
+
+    - name: 4. Simulate Production Deployment
+      run: |
+        echo "🚀 Connecting to secure hosting server..."
+        echo "📦 Deploying containerized application..."
+        echo "🎉 Success! The latest version is live on the internet."
